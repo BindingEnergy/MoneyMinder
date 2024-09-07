@@ -1,6 +1,7 @@
 import './App.css';
 import Landing from './Pages/Landing/Landing'; //importing landing page component
-import SignIn from './Components/SignIn/Signin'; //importing signIn page component
+import SignIn from './Components/SignIn/SignIn'; //importing signIn page component
+import Dashboard from './Pages/Dashboard/Dashboard'; //importing dashboard component
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -13,6 +14,7 @@ const router = createBrowserRouter(
     <>
       <Route path='/' element={<Landing />} />
       <Route path="/signin" element={<SignIn />} />
+      <Route path='/dashboard' element={<Dashboard/>}/>
     </>
   )
 );

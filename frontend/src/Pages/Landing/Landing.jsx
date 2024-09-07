@@ -7,9 +7,9 @@ import { useClerk } from '@clerk/clerk-react'
 function Landing() {
   const {signOut} = useClerk();
 
-  useEffect(()=>{ //default signout the user on landing page load
-    signOut();
-  },[signOut]);
+  // useEffect(()=>{ //default signout the user on landing page load
+  //   signOut();
+  // },[signOut]);
 
   return (
     <>
