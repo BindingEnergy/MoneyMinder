@@ -7,14 +7,26 @@ import {
   createRoutesFromElements,
   Route,
   RouterProvider,
+  useNavigate,
 } from 'react-router-dom';
+import { SignedIn,SignedOut } from '@clerk/clerk-react';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path='/' element={<Landing />} />
       <Route path="/signin" element={<SignIn />} />
-      <Route path='/dashboard' element={<Dashboard/>}/>
+      <Route path='/dashboard' element={
+        <div>
+          <SignedIn>
+            <Dashboard/>
+          </SignedIn>
+          <SignedOut>
+            <SignIn/>
+          </SignedOut>
+        </div>
+
+      }/>
     </>
   )
 );

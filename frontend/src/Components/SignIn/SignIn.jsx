@@ -71,9 +71,9 @@ const SignInPage = () => {
               </h2>
             </div>
 
-            <SignedIn>
+            {/* <SignedIn>
               <Dashboard />
-            </SignedIn>
+            </SignedIn> */}
 
             <SignIn />
           </div>
