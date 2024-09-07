@@ -1,9 +1,17 @@
 import React from 'react'
-
-export default function Dashboard() {
+import SideNav from '../../Components/SideNavbar/SideNav'
+import { UserButton } from '@clerk/clerk-react';
+import DashboardHeader from '../../Components/Header/DashboardHeader';
+export default function Dashboard({children}) {
   return (
     <div>
-      <h1>Dashboard</h1>
+      <div className='fixed md:w-64 hidden md:block'>
+        <SideNav/>
+      </div>
+      <div className='md:ml-64'>
+        <DashboardHeader/>
+        {children}
+      </div>
     </div>
   )
 }
