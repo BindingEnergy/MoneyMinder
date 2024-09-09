@@ -1,48 +1,57 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { BackpackIcon, LayoutGrid, ReceiptText, ShieldCheck } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { UserButton } from '@clerk/clerk-react';
-import { usePathname } from 'next/navigation';
 
 function SideNav() {
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const [activeMenu, setActiveMenu] = useState(location.pathname);
+
     const menuList = [
         {
             id: 1,
             name: 'Dashboard',
             icon: LayoutGrid,
-            path: '/dashboard'
+            path: '/dashboard',
         },
         {
             id: 2,
             name: 'Budgets',
             icon: BackpackIcon,
-            path: '/dashboard/budgets'
+            path: '/dashboard/budgets',
         },
         {
             id: 3,
             name: 'Expenses',
             icon: ReceiptText,
-            path: '/dashboard/expenses'
+            path: '/dashboard/expenses',
         },
         {
             id: 4,
             name: 'Upgrade',
             icon: ShieldCheck,
-            path: '/dashboard/upgrade'
-        }
+            path: '/dashboard/upgrade',
+        },
     ];
 
-    const path = usePathname();
-
-    useEffect(() => {
-        console.log(path);
-    }, [path]);
+    const handleMenuClick = (path) => {
+        setActiveMenu(path); 
+        navigate(path); 
+    };
 
     return (
         <div className='h-screen p-5 border shadow-sm flex flex-col'>
             <img src="/" alt="logo" width={160} height={100} />
             <div className='mt-5'>
                 {menuList.map((menu) => (
-                    <h2 key={menu.id} className={`flex gap-2 items-center text-gray-500 font-medium space p-5 cursor-pointer rounded-md hover:text-white hover:bg-black`}>
+                    <h2
+                        key={menu.id}
+                        onClick={() => handleMenuClick(menu.path)}
+                        className={`flex gap-3 mb-5 items-center text-gray-500 font-medium space p-5 cursor-pointer rounded-md hover:text-white hover:bg-black 
+                        ${activeMenu === menu.path ? 'bg-black text-white' : ''}`}
+                    >
                         <menu.icon className="w-6 h-6" />
                         <span>{menu.name}</span>
                     </h2>
