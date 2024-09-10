@@ -2,6 +2,7 @@ import React from 'react';
 import SideNav from '../../Components/SideNavbar/SideNav';
 import DashboardHeader from '../../Components/Header/DashboardHeader';
 import { Outlet } from 'react-router-dom';
+// import { useGlobalContext } from '../../context/globalContext';
 
 export default function Dashboard() {
   return (

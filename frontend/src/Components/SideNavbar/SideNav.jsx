@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BackpackIcon, LayoutGrid, ReceiptText, ShieldCheck } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { UserButton } from '@clerk/clerk-react';
+import logo from './money.png';
 
 function SideNav() {
     const navigate = useNavigate();
@@ -30,9 +31,9 @@ function SideNav() {
         },
         {
             id: 4,
-            name: 'Upgrade',
+            name: 'Income',
             icon: ShieldCheck,
-            path: '/dashboard/upgrade',
+            path: '/dashboard/income',
         },
     ];
 
@@ -43,7 +44,7 @@ function SideNav() {
 
     return (
         <div className='h-screen p-5 border shadow-sm flex flex-col'>
-            <img src="/" alt="logo" width={160} height={100} />
+            <img src={logo} alt="logo" className='h-40 w-50 border-collapse rounded-lg transition-transform duration-500 hover:scale-110 ml-5' />
             <div className='mt-5'>
                 {menuList.map((menu) => (
                     <h2

@@ -4,7 +4,8 @@ import SignIn from './Components/SignIn/SignIn'; // importing signIn page compon
 import Dashboard from './Pages/Dashboard/Dashboard'; // importing dashboard component
 import Budgets from './Pages/Dashboard/Budgets'; // import your budgets component
 import Expenses from './Pages/Dashboard/Expenses'; // import your expenses component
-import Upgrade from './Pages/Dashboard/Upgrade'; // import your upgrade component
+import Income from './Pages/Dashboard/Income'; // import your upgrade component
+import DashboardContents from './Pages/Dashboard/DashboardContents';
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -12,6 +13,9 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import { SignedIn, SignedOut, RedirectToSignIn } from '@clerk/clerk-react';
+import Orb from './Components/Orb/Orb';
+import { useGlobalContext } from './context/globalContext';
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,6 +26,7 @@ const router = createBrowserRouter(
         path="/dashboard"
         element={
           <SignedIn>
+            <Orb/>
             <Dashboard />
           </SignedIn>
         }
@@ -29,13 +34,16 @@ const router = createBrowserRouter(
         {/* Nested Routes inside Dashboard */}
         <Route path="budgets" element={<Budgets />} />
         <Route path="expenses" element={<Expenses />} />
-        <Route path="upgrade" element={<Upgrade />} />
+        <Route path="income" element={<Income />} />
+        <Route path="/dashboard" element={<DashboardContents/>} />
       </Route>
     </>
   )
 );
 
 function App() {
+  const global = useGlobalContext()
+  console.log(global);
   return (
     <>
       <RouterProvider router={router} />

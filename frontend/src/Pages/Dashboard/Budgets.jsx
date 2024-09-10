@@ -1,11 +1,15 @@
 import React from 'react'
+import styled from 'styled-components'
+
 
 function Budgets() {
   return (
-    <div>
-      
-    </div>
+    <BudgetsStyled></BudgetsStyled>
   )
 }
+
+const BudgetsStyled = styled.div`
+
+`
 
 export default Budgets
