@@ -6,7 +6,7 @@ import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 
 export default function Form() {
-    const { addIncome } = useGlobalContext();
+    const { addIncome, getIncome } = useGlobalContext();
     const [inputState, setInputState] = useState({
         title: '',
         amount: '',
@@ -26,6 +26,7 @@ export default function Form() {
         try {
             // Convert amount to a number before sending to backend
             await addIncome({ ...inputState, amount: Number(amount) });
+            await getIncome();
             toast.success('Income Recorded Successfully !');
             // Reset form after successful submission
             setInputState({
@@ -37,6 +38,7 @@ export default function Form() {
             });
             window.location.reload
         } catch (error) {
+            toast.error('Income Recording Failed !')
             console.error("Failed to add income:", error);
         }
     };
