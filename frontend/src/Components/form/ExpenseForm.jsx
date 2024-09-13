@@ -5,8 +5,8 @@ import { useGlobalContext } from '../../context/globalContext';
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 
-export default function Form() {
-    const { addIncome, getIncome } = useGlobalContext();
+export default function ExpenseForm() {
+    const { addExpense, getExpense } = useGlobalContext();
     const [inputState, setInputState] = useState({
         title: '',
         amount: '',
@@ -25,9 +25,9 @@ export default function Form() {
         e.preventDefault();
         try {
             // Convert amount to a number before sending to backend
-            await addIncome({ ...inputState, amount: Number(amount) });
-            await getIncome();
-            toast.success('Income Recorded Successfully !');
+            await addExpense({ ...inputState, amount: Number(amount) });
+            await getExpense();
+            toast.success('Expense Recorded Successfully !');
             // Reset form after successful submission
             setInputState({
                 title: '',
@@ -38,8 +38,8 @@ export default function Form() {
             });
             window.location.reload
         } catch (error) {
-            toast.error('Income Recording Failed !')
-            console.error("Failed to add income:", error);
+            toast.error('Expense Recording Failed !')
+            console.error("Failed to add expense:", error);
         }
     };
 
@@ -110,7 +110,7 @@ export default function Form() {
                     />
                 </label>
             </div>
-            <button type="submit" className="px-4 py-2 border border-black bg-white text-black rounded-md hover:bg-black hover:text-white hover:border-white transition duration-300 w-full">Add Income</button>
+            <button type="submit" className="px-4 py-2 border border-black bg-white text-black rounded-md hover:bg-black hover:text-white hover:border-white transition duration-300 w-full">Add Expense</button>
         </form>
         <ToastContainer className='mt-11'/>
     </>
