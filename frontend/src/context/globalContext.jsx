@@ -48,8 +48,6 @@ export const GlobalProvider = ({ children }) => {
         return totalIncome;
     }
 
-    console.log(totalIncome());
-
     //expenses
     const addExpense = async (expense) => {
         try {
@@ -89,10 +87,30 @@ export const GlobalProvider = ({ children }) => {
         return totalExpense;
     };
     
-    // Example usage
-    console.log(totalExpense());
+    const totalBalance = () => {
+        return totalIncome() - totalExpense()
+    }
 
+    const transactionHistory = () => {
+        const incomeHistory = incomes.map((income) => ({
+            ...income,
+            type: 'income',
+        }));
+    
+        const expenseHistory = expenses.map((expense) => ({
+            ...expense,
+            type: 'expense',
+        }));
+    
+        const history = [...incomeHistory, ...expenseHistory];
+        history.sort((a, b) => {
+            return new Date(b.createdAt) - new Date(a.createdAt);
+        });
+    
+        return history;
+    };
 
+    
     return (
         <GlobalContext.Provider value={{
             addIncome,
@@ -104,7 +122,9 @@ export const GlobalProvider = ({ children }) => {
             getExpense,
             expenses,
             deleteExpense,
-            totalExpense
+            totalExpense,
+            totalBalance,
+            transactionHistory
         }}>
             {children}
         </GlobalContext.Provider>

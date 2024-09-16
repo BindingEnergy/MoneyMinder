@@ -13,7 +13,7 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import { SignedIn, SignedOut, RedirectToSignIn } from '@clerk/clerk-react';
-import Orb from './Components/Orb/Orb';
+// import Orb from './Components/Orb/Orb';
 import { useGlobalContext } from './context/globalContext';
 
 
@@ -26,7 +26,7 @@ const router = createBrowserRouter(
         path="/dashboard"
         element={
           <SignedIn>
-            <Orb/>
+            {/* <Orb/> */}
             <Dashboard />
           </SignedIn>
         }
