@@ -1,2 +1,0 @@
-# MoneyMinder
- ExpenseManager Project
