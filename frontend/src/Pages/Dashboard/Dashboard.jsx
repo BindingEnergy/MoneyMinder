@@ -6,11 +6,10 @@ import { Outlet } from 'react-router-dom';
 
 export default function Dashboard() {
   return (
-    <div className="flex">
+    <div className="flex w-screen">
       <div className="fixed md:w-64 hidden md:block">
         <SideNav />
       </div>
-
       {/* Main Content Area */}
       <div className="flex-1 md:ml-64">
         <DashboardHeader />

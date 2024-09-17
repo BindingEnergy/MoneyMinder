@@ -40,7 +40,7 @@ function Chart() {
   };
 
   return (
-    <div className="bg-[#fcf6f9] border-2 border-white shadow-md p-4 rounded-2xl h-full">
+    <div className="bg-[#fcf6f9] border-2 border-white shadow-md p-4 rounded-2xl md:h-max h-[100vh]">
       <Line ref={chartRef} data={data} />
     </div>
   );
