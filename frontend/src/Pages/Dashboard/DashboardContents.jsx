@@ -19,9 +19,7 @@ function DashboardContents() {
         <div className="flex-1 bg-white p-4 rounded-lg shadow-md">
           <Chart />
         </div>
-        <div className="flex-1 bg-white p-4 rounded-lg shadow-md">
           <History />
-        </div>
       </div>
     </div>
   );
