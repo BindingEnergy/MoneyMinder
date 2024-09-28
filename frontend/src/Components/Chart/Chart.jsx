@@ -39,9 +39,14 @@ function Chart() {
     ],
   };
 
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+  };
+
   return (
-    <div className="bg-[#fcf6f9] border-2 border-white shadow-md p-4 rounded-2xl md:h-max h-[100vh]">
-      <Line ref={chartRef} data={data} />
+    <div className=" border-2 border-white shadow-md md:p-4 rounded-2xl h-[50vh]">
+      <Line ref={chartRef} data={data} options={options}/>
     </div>
   );
 }

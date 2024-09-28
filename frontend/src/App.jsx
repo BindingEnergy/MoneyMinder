@@ -26,7 +26,7 @@ const router = createBrowserRouter(
         path="/dashboard"
         element={
           <SignedIn>
-            <Orb/>
+            {/* <Orb/> */}
             <Dashboard />
           </SignedIn>
         }

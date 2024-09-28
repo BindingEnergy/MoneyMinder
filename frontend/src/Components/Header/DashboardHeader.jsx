@@ -50,7 +50,7 @@ function DashboardHeader() {
         <Menu className="w-6 h-6 cursor-pointer" onClick={() => setIsMenuOpen(!isMenuOpen)} />
       </div>
       {isMenuOpen && (
-        <div className="absolute top-16 left-0 w-full bg-white shadow-md z-10 md:hidden">
+        <div className="absolute top-16 left-0  bg-white shadow-md z-10 md:hidden rounded-xl w-[85%] mt-6 ml-2">
           <div className="p-5">
             {menuList.map((menu) => (
               <h2
@@ -66,7 +66,7 @@ function DashboardHeader() {
           </div>
         </div>
       )}
-      <div className="flex-1 flex justify-center md:justify-end">
+      <div className="flex-1 flex justify-center md:justify-end mr-5">
         <div className="searchBox rounded-lg shadow-md hover:border-black hover:border-2 md:w-1/3">
           <input
             type="text"
@@ -75,8 +75,8 @@ function DashboardHeader() {
           />
         </div>
       </div>
-      <div className="hidden md:flex items-center ml-5">
-        <UserButton />
+      <div className="md:hidden">
+        <UserButton/>
       </div>
     </div>
   );

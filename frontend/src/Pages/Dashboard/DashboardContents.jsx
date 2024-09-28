@@ -6,6 +6,9 @@ import History from '../../Components/History/History';
 
 function DashboardContents() {
   const { totalExpense, totalIncome, totalBalance, getIncome, getExpense } = useGlobalContext();
+  const netExpense = totalExpense();
+  const netIncome = totalIncome();
+  const netBalance = totalBalance();
 
   useEffect(() => {
     getExpense();
@@ -13,14 +16,32 @@ function DashboardContents() {
   }, []);
 
   return (
-    <div className="p-4">
-      <h1 className="text-3xl font-bold mb-6">All Transactions</h1>
-      <div className="flex flex-col md:flex-row gap-6">
-        <div className="md:w-1/2 w-[90%] h-[100vh] bg-white p-4 rounded-lg shadow-md">
-          <Chart />
+    <div className="p-4 w-[90%]">
+      <h1 className='font-bold md:text-5xl font-[Poppins] text-4xl mb-5'>All Transactions</h1>
+      <div className="p-5 grid grid-cols-1 md:grid-cols-2 gap-2 items-center justify-center text-center md:w-[30vw] w-[85%]">
+        <div className="net-income text-3xl font-semibold border shadow-md rounded-lg h-40">
+          <h3 className="income mb-5">Income</h3>
+          <p className='text-4xl text-green-500'>₹ {netIncome}</p>
         </div>
-        <div className="md:w-1/2 w-[90%] bg-white p-4 rounded-lg shadow-md">
-          <History />
+        <div className="net-expense text-3xl font-semibold border shadow-md rounded-lg h-40">
+          <h3 className="expense mb-5">Expense</h3>
+          <p className='text-4xl text-red-500'>₹ {netExpense}</p>
+        </div>
+        <div className="md:col-span-2">
+          <div className="balance text-3xl font-semibold border shadow-md rounded-lg h-40">
+            <h3 className="balance mb-5">Balance</h3>
+            <p className={` text-5xl ${netBalance < 0 ? 'text-red-500' : 'text-green-500'}`}>{netBalance < 0 ? `-₹ ${Math.abs(netBalance)}` : `+₹ ${netBalance}`}</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="chart-history-status md:flex md:flex-row">
+        <div className="chart p-5 flex flex-col md:w-[50vw] w-[90%]">
+          <h3 className='text-4xl font-semibold whitespace-nowrap mb-4'>Transactions Chart</h3>
+          <Chart/>
+        </div>
+        <div className="history md:w-[30vw] text-xl">
+          <History/>
         </div>
       </div>
     </div>
