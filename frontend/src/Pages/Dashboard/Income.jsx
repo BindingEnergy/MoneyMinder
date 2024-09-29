@@ -3,13 +3,22 @@ import { useGlobalContext } from '../../context/globalContext';
 import IncomeForm from '../../Components/form/IncomeForm';
 import IncomeItem from '../../Components/IncomeItem/IncomeItem';
 import { rupee } from '../../utils/icons';
+import { useUser } from '@clerk/clerk-react';
 
 function Income() {
   const { addIncome, incomes, getIncome, deleteIncome,totalIncome } = useGlobalContext();
+  const {user} = useUser();
+  const userId = user.id;
 
   useEffect(() => {
-    getIncome();
-  }, []);
+    if(userId){
+      getIncome(userId);
+    }
+  }, [userId]);
+
+  const handleAddIncome = (incomeData) => {
+    addIncome({...incomeData,userId});
+  }
 
   return (
     <div className="container mx-auto p-4">
@@ -17,7 +26,7 @@ function Income() {
       <h2 className='font-[Poppins] font-bold text-xl md:text-3xl mt-5 md:mb-5 md:mt-5 items-center border-2 border-white justify-center flex'>Total Income:  <span className='text-green-400 ml-3'>{rupee} {totalIncome()}</span> </h2>
       <div className="income-content flex flex-col lg:flex-row gap-6">
         <div className="form-container lg:w-1/3">
-          <IncomeForm />
+          <IncomeForm onSubmit={handleAddIncome}/>
         </div>
         <div className="incomes lg:w-2/3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-4">
           {incomes.length > 0 ? (

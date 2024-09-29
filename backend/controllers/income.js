@@ -1,9 +1,10 @@
 const IncomeSchema = require('../models/incomeModel'); 
 
 exports.addIncome = async (req, res) => {
-    const { title, amount, category, description, date } = req.body;
+    const { userId , title, amount, category, description, date } = req.body;
     const amountNumber = Number(amount);
     const income = new IncomeSchema({
+        userId,
         title,
         amount: amountNumber,
         category,
@@ -13,7 +14,7 @@ exports.addIncome = async (req, res) => {
 
     // Validating data
     try {
-        if (!title || !category || !description || !date) {
+        if (!userId || !title || !category || !description || !date) {
             return res.status(400).json({ message: 'All fields are required!' });
         }
         if (typeof amount !== 'number' || amount <= 0) {
@@ -30,8 +31,12 @@ exports.addIncome = async (req, res) => {
 }
 
 exports.getIncomes = async (req,res)=>{
+    const userId = req.query.userId;
     try {
-        const incomes = await IncomeSchema.find().sort({createdAt: -1})
+        if(!userId){
+            return res.status(400).json({message: "User ID is Required"})
+        }
+        const incomes = await IncomeSchema.find({userId}).sort({createdAt: -1})
         res.status(200).json(incomes)
     } catch (error) {
         res.status(500).json({message: "Server Error"})

@@ -1,18 +1,30 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
+import {useUser} from "@clerk/clerk-react";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const GlobalContext = React.createContext();
 
 export const GlobalProvider = ({ children }) => {
+    const {user} = useUser();
     const [incomes, setIncomes] = useState([]);
     const [expenses, setExpenses] = useState([]);
     const [error, setError] = useState(null);
 
+    useEffect(()=>{
+        if(user){
+            getIncome();
+            getExpense();
+        }
+    },[user]);
+
     const addIncome = async (income) => {
         try {
-            const response = await axios.post(`${BASE_URL}add-income`, income);
+            const response = await axios.post(`${BASE_URL}add-income`,{
+                ...income,
+                userId:user.id
+            });
             setIncomes([...incomes, response.data]);
         } catch (err) {
             setError(err.response.data.message);
@@ -21,7 +33,9 @@ export const GlobalProvider = ({ children }) => {
 
     const getIncome = async () => {
         try {
-            const response =  await axios.get(`${BASE_URL}get-income`);
+            const response =  await axios.get(`${BASE_URL}get-income`,{
+                params:{userId:user.id}
+            });
             setIncomes(response.data)
             totalIncome()
         } catch (error) {
@@ -35,7 +49,6 @@ export const GlobalProvider = ({ children }) => {
             getIncome();
         } catch (error) {
             console.error("Error deleting income:", error);
-            
         }
     };
 
@@ -51,7 +64,10 @@ export const GlobalProvider = ({ children }) => {
     //expenses
     const addExpense = async (expense) => {
         try {
-            const response = await axios.post(`${BASE_URL}add-expense`, expense);
+            const response = await axios.post(`${BASE_URL}add-expense`, {
+                ...expense,
+                userId:user.id
+            });
             setExpenses([...expenses, response.data]);
         } catch (err) {
             setError(err.response.data.message);
@@ -60,7 +76,9 @@ export const GlobalProvider = ({ children }) => {
 
     const getExpense = async () => {
         try {
-            const response =  await axios.get(`${BASE_URL}get-expense`);
+            const response =  await axios.get(`${BASE_URL}get-expense`,{
+                params:{userId:user.id}
+            });
             setExpenses(response.data)
             totalExpense()
         } catch (error) {

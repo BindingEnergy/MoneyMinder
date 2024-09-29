@@ -4,9 +4,12 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { useGlobalContext } from '../../context/globalContext';
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
+import {useUser} from '@clerk/clerk-react'
 
 export default function IncomeForm() {
     const { addIncome, getIncome } = useGlobalContext();
+    const {user} = useUser();
+    const userId = user?.id
     const [inputState, setInputState] = useState({
         title: '',
         amount: '',
@@ -25,8 +28,8 @@ export default function IncomeForm() {
         e.preventDefault();
         try {
             // Convert amount to a number before sending to backend
-            await addIncome({ ...inputState, amount: Number(amount) });
-            await getIncome();
+            await addIncome({ ...inputState, amount: Number(amount),userId });
+            await getIncome(userId);
             toast.success('Income Recorded Successfully !');
             // Reset form after successful submission
             setInputState({

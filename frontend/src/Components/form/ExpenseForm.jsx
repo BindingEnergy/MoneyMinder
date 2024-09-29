@@ -4,9 +4,13 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { useGlobalContext } from '../../context/globalContext';
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
+import { useUser } from '@clerk/clerk-react';
 
 export default function ExpenseForm() {
     const { addExpense, getExpense } = useGlobalContext();
+    const { user } = useUser();
+    const userId = user?.id;
+
     const [inputState, setInputState] = useState({
         title: '',
         amount: '',
@@ -25,8 +29,8 @@ export default function ExpenseForm() {
         e.preventDefault();
         try {
             // Convert amount to a number before sending to backend
-            await addExpense({ ...inputState, amount: Number(amount) });
-            await getExpense();
+            await addExpense({ ...inputState, amount: Number(amount),userId });
+            await getExpense(userId);
             toast.success('Expense Recorded Successfully !');
             // Reset form after successful submission
             setInputState({
