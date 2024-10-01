@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { UserButton } from '@clerk/clerk-react';
-import { BackpackIcon, LayoutGrid, ReceiptText, ShieldCheck, Menu } from 'lucide-react';
+import { BackpackIcon, LayoutGrid, ReceiptText, ShieldCheck, Menu, GemIcon } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-function DashboardHeader() {
+function DashboardHeader({onSearch}) {
   const navigate = useNavigate();
   const location = useLocation();
 
   const [activeMenu, setActiveMenu] = useState(location.pathname);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
 
   const handleMenuClick = (path) => {
     setActiveMenu(path);
@@ -37,9 +38,9 @@ function DashboardHeader() {
     },
     {
       id: 4,
-      name: 'Budgets',
-      icon: ShieldCheck,
-      path: '/dashboard/budgets',
+      name: 'Subscription',
+      icon: GemIcon,
+      path: '/dashboard/Subscription',
     },
     // Add other menu items here
   ];

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BackpackIcon, LayoutGrid, ReceiptText, ShieldCheck } from 'lucide-react';
+import { BackpackIcon, LayoutGrid, ReceiptText, ShieldCheck, GemIcon } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { UserButton } from '@clerk/clerk-react';
 import logo from './money.png';
@@ -19,21 +19,21 @@ function SideNav() {
         },
         {
             id: 2,
-            name: 'Budgets',
-            icon: BackpackIcon,
-            path: '/dashboard/budgets',
-        },
-        {
-            id: 3,
             name: 'Expenses',
             icon: ReceiptText,
             path: '/dashboard/expenses',
         },
         {
-            id: 4,
+            id: 3,
             name: 'Income',
             icon: ShieldCheck,
             path: '/dashboard/income',
+        },
+        {
+            id: 4,
+            name: 'Subscription',
+            icon: GemIcon,
+            path: '/dashboard/subscription',
         },
     ];
 

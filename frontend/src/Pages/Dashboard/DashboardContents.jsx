@@ -4,11 +4,13 @@ import { useGlobalContext } from '../../context/globalContext';
 import { rupee } from '../../utils/icons';
 import History from '../../Components/History/History';
 
+
 function DashboardContents() {
   const { totalExpense, totalIncome, totalBalance, getIncome, getExpense } = useGlobalContext();
   const netExpense = totalExpense();
   const netIncome = totalIncome();
   const netBalance = totalBalance();
+
 
   useEffect(() => {
     getExpense();

@@ -2,9 +2,9 @@ import './App.css';
 import Landing from './Pages/Landing/Landing'; // importing landing page component
 import SignIn from './Components/SignIn/SignIn'; // importing signIn page component
 import Dashboard from './Pages/Dashboard/Dashboard'; // importing dashboard component
-import Budgets from './Pages/Dashboard/Budgets'; // import your budgets component
 import Expenses from './Pages/Dashboard/Expenses'; // import your expenses component
 import Income from './Pages/Dashboard/Income'; // import your upgrade component
+import Subscription from './Pages/Dashboard/Subscription';
 import DashboardContents from './Pages/Dashboard/DashboardContents';
 import {
   createBrowserRouter,
@@ -32,7 +32,7 @@ const router = createBrowserRouter(
         }
       >
         {/* Nested Routes inside Dashboard */}
-        <Route path="budgets" element={<Budgets />} />
+        <Route path="subscription" element={<Subscription/>} />
         <Route path="expenses" element={<Expenses />} />
         <Route path="income" element={<Income />} />
         <Route path="/dashboard" element={<DashboardContents/>} />
