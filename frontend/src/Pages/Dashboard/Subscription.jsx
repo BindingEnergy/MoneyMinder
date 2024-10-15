@@ -13,7 +13,7 @@ export default function Subscription() {
             <div class="flex flex-col text-center w-full mb-20">
               <h1 class="sm:text-5xl text-6xl font-medium title-font mb-2 text-gray-900 ">Pricing</h1>
               <p class="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-500">Subscribe to any of our plans for Increased Functionality</p>
-              <div className='border-black border-4 w-fit md:ml-[649px] mt-5 rounded-lg'>
+              <div className='border-black border-4 w-fit md:ml-[649px] mt-5 rounded-lg ml-[55px]'>
                   <button
                     className={`py-1 px-4 ${activeButton === 'monthly' ? 'bg-black text-white border-black' : 'bg-white text-black border-gray-300'}`}
                     onClick={() => handleButtonClick('monthly')}

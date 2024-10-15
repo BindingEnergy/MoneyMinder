@@ -35,7 +35,7 @@ export default function Header() {
           className='bg-black text-white border border-white text-lg rounded-full h-10 px-5 m-2 hover:text-black hover:bg-white hover:border-black'
           onClick={handleSignInClick}
         >
-          Get Started
+          Login / SignUp
         </button>
       )}
     </div>

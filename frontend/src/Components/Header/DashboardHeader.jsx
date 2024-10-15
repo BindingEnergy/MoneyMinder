@@ -3,19 +3,21 @@ import { UserButton } from '@clerk/clerk-react';
 import { BackpackIcon, LayoutGrid, ReceiptText, ShieldCheck, Menu, GemIcon } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-function DashboardHeader({onSearch}) {
+function DashboardHeader() {
+
+  
   const navigate = useNavigate();
   const location = useLocation();
 
   const [activeMenu, setActiveMenu] = useState(location.pathname);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-
   const handleMenuClick = (path) => {
     setActiveMenu(path);
     navigate(path);
-    setIsMenuOpen(false); // Close the menu after clicking
+    setIsMenuOpen(false); 
   };
+
 
   const menuList = [
     {
@@ -67,15 +69,6 @@ function DashboardHeader({onSearch}) {
           </div>
         </div>
       )}
-      <div className="flex-1 flex justify-center md:justify-end mr-5">
-        <div className="searchBox rounded-lg shadow-md hover:border-black hover:border-2 md:w-1/3">
-          <input
-            type="text"
-            placeholder="Search Transactions"
-            className="p-2 rounded-lg border-2 border-black w-full"
-          />
-        </div>
-      </div>
       <div className="md:hidden">
         <UserButton/>
       </div>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Chart from '../../Components/Chart/Chart';
 import { useGlobalContext } from '../../context/globalContext';
 import { rupee } from '../../utils/icons';
@@ -7,6 +7,9 @@ import History from '../../Components/History/History';
 
 function DashboardContents() {
   const { totalExpense, totalIncome, totalBalance, getIncome, getExpense } = useGlobalContext();
+  
+
+
   const netExpense = totalExpense();
   const netIncome = totalIncome();
   const netBalance = totalBalance();
@@ -16,6 +19,8 @@ function DashboardContents() {
     getExpense();
     getIncome();
   }, []);
+
+
 
   return (
     <div className="p-4 w-[90%]">

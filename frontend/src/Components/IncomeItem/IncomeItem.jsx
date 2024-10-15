@@ -1,5 +1,6 @@
 import React from 'react'
 import { banktransfer, calendar, comment, crypto, freelancing, investments, other, rupee, salary, stocks, trash, youtube } from '../../utils/icons'
+import { Banknote } from 'lucide-react';
 
 function IncomeItem({
     id,
@@ -18,7 +19,7 @@ function IncomeItem({
         switch(category)
         {
             case 'salary':
-                return salary;
+                return <Banknote className='w-[50px] h-[50px]'/>;
             case 'freelancing':
                 return freelancing;
             case 'investments':
