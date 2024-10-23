@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../../Components/Header/Header';
 import Banner from './Banner';
+import SwiperPage from './SwiperPage';
 import { useClerk } from '@clerk/clerk-react';
 
 function Landing() {
@@ -19,6 +20,7 @@ function Landing() {
     <>
       <Header isSignedIn={isSignedIn} />
       <Banner />
+      {/* <SwiperPage/> */}
     </>
   );
 }

@@ -14,6 +14,7 @@ import {
 } from 'react-router-dom';
 import { SignedIn, SignedOut, RedirectToSignIn } from '@clerk/clerk-react';
 import { useGlobalContext } from './context/globalContext';
+import DashboardNew from './Pages/Dashboard/DashboardNew';
 
 
 const router = createBrowserRouter(
@@ -33,7 +34,7 @@ const router = createBrowserRouter(
         <Route path="subscription" element={<Subscription/>} />
         <Route path="expenses" element={<Expenses />} />
         <Route path="income" element={<Income />} />
-        <Route path="/dashboard" element={<DashboardContents/>} />
+        <Route path="/dashboard" element={<DashboardNew/>} />
       </Route>
     </>
   )

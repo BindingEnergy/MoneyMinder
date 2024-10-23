@@ -43,7 +43,7 @@ function SideNav() {
     };
 
     return (
-        <div className='h-screen p-5 border shadow-sm flex flex-col'>
+        <div className='h-screen p-5 border shadow-sm flex flex-col outline-none'>
             <img src={logo} alt="logo" className='h-40 w-50 border-collapse rounded-lg transition-transform duration-500 hover:scale-110 ml-5' />
             <div className='mt-5'>
                 {menuList.map((menu) => (
@@ -58,7 +58,7 @@ function SideNav() {
                     </h2>
                 ))}
             </div>
-            <div className='fixed bottom-10 p-5 flex gap-2 text-xl font-bold cursor-pointer items-center'>
+            <div className='fixed bottom-10 p-5 flex gap-2 text-[#6DB193] text-xl font-bold cursor-pointer items-center'>
                 <UserButton />
                 Profile
             </div>
