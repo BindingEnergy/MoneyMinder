@@ -58,7 +58,7 @@ function SideNav() {
                     </h2>
                 ))}
             </div>
-            <div className='fixed bottom-10 p-5 flex gap-2 text-[#6DB193] text-xl font-bold cursor-pointer items-center'>
+            <div className='fixed bottom-10 p-5 flex gap-2 text-xl font-bold cursor-pointer items-center'>
                 <UserButton />
                 Profile
             </div>
